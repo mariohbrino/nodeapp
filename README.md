@@ -4,7 +4,13 @@ This is an example of node application for research and development. It is a sim
 
 # Development Environment
 
-The application uses Visual Studio Code with Node.js version 22.22.0 or greater and NPM for development.
+This application uses nodejs version 22.10.0 and npm.
+
+```bash
+npm run dev
+# or
+node src/index.js
+```
 
 # Useful Websites
 
