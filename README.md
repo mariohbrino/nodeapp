@@ -8,7 +8,6 @@ The application uses Visual Studio Code with Node.js version 22.22.0 or greater 
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Nodejs](https://nodejs.org/en)
 * [NPM](https://www.npmjs.com/)
