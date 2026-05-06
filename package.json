@@ -21,6 +21,8 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --reporter=verbose",
+    "test:units": "vitest run --reporter=verbose --project=unit-tests --coverage",
+    "test:features": "vitest run --reporter=verbose --project=feature-tests --coverage",
     "test:dev": "vitest watch",
     "test:coverage": "vitest run --reporter=verbose --coverage"
   },
