@@ -11,6 +11,7 @@ env:
 
 jobs:
   lint:
+    name: Lint checks
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -30,6 +31,7 @@ jobs:
         run: npm run lint
 
   format:
+    name: Format Checks
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
