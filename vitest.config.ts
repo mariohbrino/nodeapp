@@ -5,6 +5,12 @@ export default defineConfig({
   test: {
     include: ["tests/**/*.test.js", "tests/**/*.test.ts"],
     reporters: ["default", ["junit", { suiteName: "UI tests" }]],
+    coverage: {
+      provider: "v8",
+      include: ["src/**/*.{ts,js}"],
+      exclude: ["node_modules", "tests"],
+      reporter: ["text", "html", "json"],
+    },
     projects: [
       {
         test: {
