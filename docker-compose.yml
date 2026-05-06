@@ -1,0 +1,22 @@
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+  db_nodeapp:
+
+services:
+  db_nodeapp:
+    image: postgres:18.1
+    container_name: db_nodeapp
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nodeapp
+      POSTGRES_USER: nodeapp
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5449:5432
+    volumes:
+      - db_nodeapp:/var/lib/postgresql
+    networks:
+      - internal
