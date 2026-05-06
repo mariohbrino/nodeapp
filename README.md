@@ -27,5 +27,8 @@ podman-compose up -d
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Nodejs](https://nodejs.org/en)
 * [NPM](https://www.npmjs.com/)
+* [docker](https://www.docker.com/)
+* [podman](https://podman.io/)
+* [vitest](https://vitest.dev/)
 * [express](https://expressjs.com/)
 * [postgresql](https://www.postgresql.org/)
