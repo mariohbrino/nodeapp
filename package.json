@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "description": "node web application example",
-  "main": "index.ts",
+  "main": "app.ts",
   "engines": {
     "node": ">=22.22.0"
   },
@@ -12,9 +12,9 @@
     "typescript": "^5"
   },
   "scripts": {
-    "dev": "node src/index.ts",
+    "dev": "node src/app.ts",
     "build": "tsc --project tsconfig.build.json",
-    "start": "node dist/index.js",
+    "start": "node dist/app.js",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "lint": "eslint .",
