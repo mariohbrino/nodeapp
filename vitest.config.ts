@@ -7,6 +7,10 @@ export default defineConfig({
   },
   test: {
     silent: true,
+    typecheck: {
+      include: ["src/**/*.{ts,js}", "tests/**/*.{ts,js}"],
+      exclude: ["node_modules"],
+    },
     include: ["tests/**/*.test.js", "tests/**/*.test.ts"],
     reporters: ["default", ["junit", { suiteName: "UI tests" }]],
     coverage: {
