@@ -30,8 +30,8 @@ jobs:
       - name: Run unit tests
         run: npm run test:units
 
-  integration-tests:
-    name: Integration Tests
+  feature-tests:
+    name: Feature Tests
     needs: unit-tests
     runs-on: ${{ matrix.os }}
     strategy:
@@ -50,3 +50,24 @@ jobs:
         run: npm ci
       - name: Run feature tests
         run: npm run test:features
+
+  integration-tests:
+    name: Integration Tests
+    needs: feature-tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: ["22.22.0"]
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - name: Install node dependencies
+        run: npm ci
+      - name: Run integration tests
+        run: npm run test:integrations
