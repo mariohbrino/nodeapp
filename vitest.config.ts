@@ -2,7 +2,11 @@
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
+  resolve: {
+    tsconfigPaths: true,
+  },
   test: {
+    silent: true,
     include: ["tests/**/*.test.js", "tests/**/*.test.ts"],
     reporters: ["default", ["junit", { suiteName: "UI tests" }]],
     coverage: {
@@ -13,6 +17,9 @@ export default defineConfig({
     },
     projects: [
       {
+        resolve: {
+          tsconfigPaths: true,
+        },
         test: {
           name: "unit-tests",
           include: ["tests/units/**/*.test.js", "tests/units/**/*.test.ts"],
@@ -21,9 +28,23 @@ export default defineConfig({
         },
       },
       {
+        resolve: {
+          tsconfigPaths: true,
+        },
         test: {
           name: "feature-tests",
           include: ["tests/features/**/*.test.js", "tests/features/**/*.test.ts"],
+          environment: "node",
+          pool: "forks",
+        },
+      },
+      {
+        resolve: {
+          tsconfigPaths: true,
+        },
+        test: {
+          name: "integration-tests",
+          include: ["tests/integrations/**/*.test.js", "tests/integrations/**/*.test.ts"],
           environment: "node",
           pool: "forks",
         },
