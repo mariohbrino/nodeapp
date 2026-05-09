@@ -15,7 +15,7 @@ const stream = {
 };
 
 // Custom morgan format with request ID
-const morganMiddleware = morgan(":request-id :method :url :status :response-time ms", {
+const morganMiddleware = morgan("x-request-id: :request-id :method :url :status :response-time ms", {
   stream,
 });
 
