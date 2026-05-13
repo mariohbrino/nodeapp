@@ -60,6 +60,21 @@ jobs:
         os: [ubuntu-latest]
         node-version: ["22.22.0"]
 
+    services:
+      postgres:
+        image: postgres:18.1
+        env:
+          POSTGRES_DB: nodeapp
+          POSTGRES_USER: nodeapp
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v6
       - name: Use Node.js ${{ matrix.node-version }}
@@ -73,6 +88,10 @@ jobs:
         run: cp .env-ci.example .env
       - name: Pre build test
         run: npm run prebuild
+      - name: Run database migrations
+        run: npm run db:deploy
+      - name: Seed database
+        run: npm run db:seed
       - name: Run integration tests
         run: npm run test:integrations
 
