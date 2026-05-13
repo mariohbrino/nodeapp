@@ -23,6 +23,9 @@ export class WebApp {
 
     // Serve static files (CSS, JS, images)
     this.app.use("/public", express.static(path.join(__dirname, "../../public")));
+
+    // Configure Handlebars as the template engine
+    this.setTemplateEngine();
   }
 
   /**

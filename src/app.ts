@@ -3,7 +3,6 @@ import { userController } from "@/controller/user.controller";
 import { WebApp } from "@/core/server";
 
 export const webApp = new WebApp();
-webApp.setTemplateEngine();
 
 webApp.registerRoute("/", "get", async (request, response) => {
   await homeController.index(request, response);
