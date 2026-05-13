@@ -19,12 +19,10 @@ const validateBoolean = (value: string | undefined, defaultValue: boolean = true
   }
 
   if (["true", "1", "yes"].includes(value)) {
-    console.log(value);
     return true;
   }
 
   if (["false", "0", "no"].includes(value)) {
-    console.log(value);
     return false;
   }
 
