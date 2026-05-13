@@ -71,8 +71,8 @@ jobs:
         run: npm ci
       - name: Copy .env file
         run: cp .env-ci.example .env
-      - name: Build Test
-        run: npm run build
+      - name: Pre build test
+        run: npm run prebuild
       - name: Run integration tests
         run: npm run test:integrations
 
@@ -95,5 +95,5 @@ jobs:
         run: npm ci
       - name: Copy .env file
         run: cp .env-ci.example .env
-      - name: Build Test
+      - name: Build test
         run: npm run build
