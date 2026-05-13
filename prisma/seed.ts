@@ -10,11 +10,23 @@ const main = async () => {
       name: "Alice",
       email: "alice@prisma.io",
       posts: {
-        create: {
-          title: "Check out Prisma with Next.js",
-          content: "https://www.prisma.io/nextjs",
-          published: true,
-        },
+        create: [
+          {
+            title: "Alice's first post",
+            content: "Hello World! This is my first post.",
+            published: true,
+          },
+          {
+            title: "Alice's second post",
+            content: "Hello again! This is my second post.",
+            published: false,
+          },
+          {
+            title: "Alice's third post",
+            content: "Hello once more! This is my third post.",
+            published: true,
+          },
+        ],
       },
     },
     include: {
@@ -32,13 +44,13 @@ const main = async () => {
       posts: {
         create: [
           {
-            title: "Follow Prisma on Twitter",
-            content: "https://twitter.com/prisma",
+            title: "Bob's first post",
+            content: "Hello World! This is Bob's first post.",
             published: true,
           },
           {
-            title: "Follow Nexus on Twitter",
-            content: "https://twitter.com/nexusgql",
+            title: "Bob's second post",
+            content: "Hello again! This is Bob's second post.",
             published: true,
           },
         ],
