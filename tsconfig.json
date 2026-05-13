@@ -49,5 +49,5 @@
     "emitDecoratorMetadata": true
   },
   "include": ["src/**/*", "tests/**/*"],
-  "exclude": ["node_modules", "dist", "prisma"]
+  "exclude": ["node_modules", "dist"]
 }
