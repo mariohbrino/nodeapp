@@ -1,0 +1,9 @@
+<div class="bg-gray-700 p-4 rounded-lg mb-4">
+  <h2 class="text-xl font-semibold">{{user.name}}</h2>
+  <p class="text-gray-400">{{user.email}}</p>
+  {{#each user.posts}}
+    <div class="bg-gray-600 my-4 p-4 rounded">
+      <h3 class="text-xl font-semibold">{{this.title}}</h3>
+    </div>
+  {{/each}}
+</div>

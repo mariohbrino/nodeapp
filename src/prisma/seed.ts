@@ -4,11 +4,11 @@ import { prisma } from "@/lib/prisma";
 const main = async () => {
   // Create a new user with a post
   const alice = await prisma.user.upsert({
-    where: { email: "alice@prisma.io" },
+    where: { email: "alice@example.com" },
     update: {},
     create: {
       name: "Alice",
-      email: "alice@prisma.io",
+      email: "alice@example.com",
       posts: {
         create: [
           {
@@ -36,10 +36,10 @@ const main = async () => {
 
   // Create a new user with a posts
   const bob = await prisma.user.upsert({
-    where: { email: "bob@prisma.io" },
+    where: { email: "bob@example.com" },
     update: {},
     create: {
-      email: "bob@prisma.io",
+      email: "bob@example.com",
       name: "Bob",
       posts: {
         create: [

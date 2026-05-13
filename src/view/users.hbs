@@ -1,0 +1,9 @@
+<div class="bg-gray-800 w-full max-w-4xl mx-auto p-6 rounded-2xl">
+  <h1 class="text-2xl font-bold mb-4">{{title}}</h1>
+  <section>
+    {{#each users.data}}
+      {{> user-card user=this}}
+    {{/each}}
+    <p>Total Users: {{users.total}}</p>
+  </section>
+</div>
