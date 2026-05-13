@@ -69,6 +69,10 @@ jobs:
           cache: "npm"
       - name: Install node dependencies
         run: npm ci
+      - name: Copy .env file
+        run: cp .env-ci.example .env
+      - name: Build Test
+        run: npm run build
       - name: Run integration tests
         run: npm run test:integrations
 
