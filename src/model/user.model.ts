@@ -1,6 +1,26 @@
+import type { User } from "@/generated/prisma/browser";
 import { prisma } from "@/lib/prisma";
 
-const getUsers = async (currentPage: number, pageSize: number, published: boolean, all: boolean = true) => {
+/**
+ * Get a paginated list of users, optionally filtered by published posts.
+ * @param currentPage number number of the current page
+ * @param pageSize number number of users per page
+ * @param published boolean filter by published posts
+ * @param all boolean whether to include all users or only those with published posts
+ * @returns object containing the paginated list of users, total count, and pagination info
+ */
+const getUsers = async (
+  currentPage: number,
+  pageSize: number,
+  published: boolean,
+  all: boolean = true,
+): Promise<{
+  data: Array<User & { _count: { posts: number } }>;
+  total: number;
+  currentPage: number;
+  pageSize: number;
+  totalPages: number;
+}> => {
   const skip = (currentPage - 1) * pageSize;
 
   const [data, total] = await prisma.$transaction([
@@ -26,7 +46,13 @@ const getUsers = async (currentPage: number, pageSize: number, published: boolea
   };
 };
 
-const getUserById = async (id: string) => {
+/** Get a user by their ID, including their published posts.
+ * @param id string ID of the user
+ * @returns object containing the user and their published posts, or null if not found
+ */
+const getUserById = async (
+  id: string,
+): Promise<(User & { posts: Array<{ id: string; title: string; published: boolean; createdAt: Date }> }) | null> => {
   return prisma.user.findUnique({
     where: { id },
     include: {

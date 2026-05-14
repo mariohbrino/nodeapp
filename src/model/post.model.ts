@@ -1,6 +1,25 @@
 import { prisma } from "@/lib/prisma";
 
-const getPosts = async (currentPage: number, pageSize: number, published: boolean, all: boolean = true) => {
+/**
+ * Get a paginated list of posts, optionally filtered by published status.
+ * @param currentPage number number of the current page
+ * @param pageSize number number of posts per page
+ * @param published boolean filter by published status
+ * @param all boolean whether to include all posts or only published ones
+ * @returns object containing the paginated list of posts, total count, and pagination info
+ */
+const getPosts = async (
+  currentPage: number,
+  pageSize: number,
+  published: boolean,
+  all: boolean = true,
+): Promise<{
+  data: Array<{ id: string; title: string; published: boolean; createdAt: Date; author: { id: string; name: string } }>;
+  total: number;
+  currentPage: number;
+  pageSize: number;
+  totalPages: number;
+}> => {
   const skip = (currentPage - 1) * pageSize;
 
   const [data, total] = await prisma.$transaction([
@@ -28,7 +47,20 @@ const getPosts = async (currentPage: number, pageSize: number, published: boolea
   };
 };
 
-const getPostById = async (id: string) => {
+/**
+ * Get a single post by its ID, including the author's information.
+ * @param id string ID of the post
+ * @returns object containing the post's details and author's information, or null if not found
+ */
+const getPostById = async (
+  id: string,
+): Promise<{
+  id: string;
+  title: string;
+  published: boolean;
+  createdAt: Date;
+  author: { id: string; name: string; email: string };
+} | null> => {
   return prisma.post.findUnique({
     where: { id },
     include: {
