@@ -12,7 +12,7 @@ type RouteMethod = "get" | "post" | "put" | "delete";
 
 export class WebApp {
   app = express();
-  port = 3000;
+  port = process.env["PORT"] ? parseInt(process.env["PORT"], 10) : 3000;
 
   /**
    * The constructor initializes the Express app and sets up middlewares and static file serving
