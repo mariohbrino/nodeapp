@@ -1,4 +1,4 @@
-import { getUsers } from "@/model/user.model";
+import { getUserById, getUsers } from "@/model/user.model";
 import { validateBoolean } from "@/validate/boolean.util";
 import { type Request, type Response } from "express";
 
@@ -28,6 +28,11 @@ class UserController {
     return response
       .status(200)
       .render("users", { title: "Users Page", users: await getUsers(currentPage, pageSize, published) });
+  };
+
+  show = async (request: Request, response: Response) => {
+    const userId = request.params["id"] as string;
+    return response.status(200).render("user", { user: await getUserById(userId) });
   };
 }
 

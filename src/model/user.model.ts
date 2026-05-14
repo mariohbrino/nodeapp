@@ -1,22 +1,19 @@
 import { prisma } from "@/lib/prisma";
 
-const getUsers = async (currentPage: number, pageSize: number, published: boolean) => {
+const getUsers = async (currentPage: number, pageSize: number, published: boolean, all: boolean = true) => {
   const skip = (currentPage - 1) * pageSize;
 
   const [data, total] = await prisma.$transaction([
     prisma.user.findMany({
-      where: { posts: { some: { published } } },
+      where: all ? {} : { posts: { some: { published } } },
       skip,
       take: pageSize,
       include: {
-        posts: {
-          select: { id: true, title: true, published: true, createdAt: true, updatedAt: true },
-          where: { published },
-        },
+        _count: { select: { posts: { where: { published: true } } } },
       },
     }),
     prisma.user.count({
-      where: { posts: { some: { published } } },
+      where: all ? {} : { posts: { some: { published } } },
     }),
   ]);
 
@@ -29,4 +26,15 @@ const getUsers = async (currentPage: number, pageSize: number, published: boolea
   };
 };
 
-export { getUsers };
+const getUserById = async (id: string) => {
+  return prisma.user.findUnique({
+    where: { id },
+    include: {
+      posts: {
+        select: { id: true, title: true, published: true, createdAt: true },
+      },
+    },
+  });
+};
+
+export { getUserById, getUsers };

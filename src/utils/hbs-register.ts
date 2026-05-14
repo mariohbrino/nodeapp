@@ -19,6 +19,16 @@ export const createHandlebarsEngine = () => {
     // Custom helpers
     helpers: {
       json: (context: unknown) => JSON.stringify(context),
+      formatDate: (date: Date) => {
+        if (!date) return "";
+        return new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }).format(new Date(date));
+      },
     },
   });
 };

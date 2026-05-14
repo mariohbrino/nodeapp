@@ -60,8 +60,19 @@ const main = async () => {
       posts: true,
     },
   });
+
+  const mcKenzie = await prisma.user.upsert({
+    where: { email: "mckenzie@example.com" },
+    update: {},
+    create: {
+      email: "mckenzie@example.com",
+      name: "McKenzie",
+    },
+  });
+
   console.log("User created:", bob);
   console.log("User created:", alice);
+  console.log("User created:", mcKenzie);
 };
 
 await main()

@@ -1,9 +1,17 @@
-<div class="bg-gray-700 p-4 rounded-lg mb-4">
-  <h2 class="text-xl font-semibold">{{user.name}}</h2>
-  <p class="text-gray-400">{{user.email}}</p>
-  {{#each user.posts}}
-    <div class="bg-gray-600 my-4 p-4 rounded">
-      <h3 class="text-xl font-semibold">{{this.title}}</h3>
-    </div>
-  {{/each}}
+<div class="bg-gray-200 text-gray-800 p-4 rounded-lg mb-4">
+  <h2 class="text-x font-semibold">{{user.name}}</h2>
+  <p>{{user.email}}</p>
+  <div class="text-gray-500">
+    <h3 class="text-lg font-semibold">Posts</h3>
+    {{#if user.posts}}
+      {{#each user.posts}}
+        <p class="">
+          <a class="text-green-600 hover:text-green-400" href="/posts/{{this.id}}">{{this.title}}</a>
+          {{formatDate this.createdAt}}
+        </p>
+      {{/each}}
+    {{else}}
+      No posts
+    {{/if}}
+  </div>
 </div>

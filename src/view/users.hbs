@@ -1,9 +1,23 @@
 <div class="bg-gray-800 w-full max-w-4xl mx-auto p-6 rounded-2xl">
   <h1 class="text-2xl font-bold mb-4">{{title}}</h1>
   <section>
+    <h2 class="text-lg font-semibold my-3">List</h2>
     {{#each users.data}}
-      {{> user-card user=this}}
+      <div class="bg-gray-200 text-gray-800 p-4 rounded-lg mb-4">
+        <h3 class="text-x font-semibold">
+          <a class="text-green-600 hover:text-green-400" href="/users/{{this.id}}">{{this.name}}</a>
+        </h3>
+        <p>{{this.email}}</p>
+        <p class="text-gray-500">
+        {{#if this._count.posts}}
+        Has {{this._count.posts}} posts
+        {{else}}
+        No posts
+        {{/if}}
+      </p>
+    </div>
     {{/each}}
+
     <p>Total Users: {{users.total}}</p>
   </section>
 </div>
