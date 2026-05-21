@@ -6,7 +6,7 @@
   "description": "node web application example",
   "main": "app.ts",
   "engines": {
-    "node": ">=22.22.0"
+    "node": ">=22.22.3"
   },
   "peerDependencies": {
     "typescript": "^5"
