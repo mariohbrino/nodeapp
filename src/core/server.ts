@@ -8,8 +8,6 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-type RouteMethod = "get" | "post" | "put" | "delete";
-
 export class WebApp {
   app = express();
   port = process.env["PORT"] ? parseInt(process.env["PORT"], 10) : 3000;
@@ -35,13 +33,21 @@ export class WebApp {
   }
 
   /**
-   * Register a route with the specified HTTP method and handler
-   * @param path string the route path (e.g., "/users")
-   * @param method RouteMethod the HTTP method (get, post, put, delete)
-   * @param handlerCallback function the route handler function
+   * Register a GET route with the Express app
+   * @param path string the route path
+   * @param handlerCallback function to handle the request and response
    */
-  registerRoute(path: string, method: RouteMethod, handlerCallback: (request: Request, response: Response) => void) {
-    this.app[method](path, handlerCallback);
+  get(path: string, handlerCallback: (request: Request, response: Response) => void) {
+    this.app.get(path, handlerCallback);
+  }
+
+  /**
+   * Register a POST route with the Express app
+   * @param path string the route path
+   * @param handlerCallback function to handle the request and response
+   */
+  post(path: string, handlerCallback: (request: Request, response: Response) => void) {
+    this.app.post(path, handlerCallback);
   }
 
   /**
