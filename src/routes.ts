@@ -33,12 +33,12 @@ const routes = (webApp: WebApp) => {
     postController.edit(request, response);
   });
 
-  webApp.post("/posts/:id/update", (request: Request, response: Response): void => {
-    postController.update(request, response);
-  });
-
   webApp.get("/posts/:id", (request: Request, response: Response): void => {
     postController.show(request, response);
+  });
+
+  webApp.post("/posts/:id/update", (request: Request, response: Response): void => {
+    postController.update(request, response);
   });
 
   webApp.post("/posts/:id/delete", (request: Request, response: Response): void => {
