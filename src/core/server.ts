@@ -21,6 +21,12 @@ export class WebApp {
     this.app.use(requestIdMiddleware);
     this.app.use(morganMiddleware);
 
+    // Parse URL-encoded bodies (from HTML forms)
+    this.app.use(express.urlencoded({ extended: true }));
+
+    // Parse JSON bodies (for API requests)
+    this.app.use(express.json());
+
     // Serve static files (CSS, JS, images)
     this.app.use("/public", express.static(path.join(__dirname, "../../public")));
 

@@ -63,4 +63,11 @@ const getUserById = async (
   });
 };
 
-export { getUserById, getUsers };
+/** Get the first user in the database.
+ * @returns object containing the first user, or null if no users exist
+ */
+const getFirstUser = async (): Promise<User | null> => {
+  return prisma.user.findFirst();
+};
+
+export { getFirstUser, getUserById, getUsers };
