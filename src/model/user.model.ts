@@ -70,4 +70,15 @@ const getFirstUser = async (): Promise<User | null> => {
   return prisma.user.findFirst();
 };
 
-export { getFirstUser, getUserById, getUsers };
+/**
+ * Get a random user from the database.
+ * @returns object containing a random user, or null if no users exist
+ */
+const getRandomUser = async (): Promise<User | null> => {
+  const itemCount = await prisma.user.count();
+  const skip = Math.floor(Math.random() * itemCount);
+  const users = await prisma.user.findMany({ take: 1, skip });
+  return users[0] || null;
+};
+
+export { getFirstUser, getRandomUser, getUserById, getUsers };

@@ -1,5 +1,5 @@
 import { createPost, deletePost, getPostById, getPosts, updatePost } from "@/model/post.model";
-import { getFirstUser } from "@/model/user.model";
+import { getFirstUser, getRandomUser } from "@/model/user.model";
 import { validateBoolean } from "@/validate/boolean.util";
 import { type Request, type Response } from "express";
 
@@ -50,14 +50,14 @@ class PostController {
       return;
     }
 
-    const firstUser = await getFirstUser();
+    const randomUser = await getRandomUser();
 
-    if (!firstUser) {
+    if (!randomUser) {
       response.status(400).json({ error: "No users found to assign as author." });
       return;
     }
 
-    await createPost({ title, content, published, authorId: firstUser.id });
+    await createPost({ title, content, published, authorId: randomUser.id });
 
     response.redirect(302, "/posts");
   };
