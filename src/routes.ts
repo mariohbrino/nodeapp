@@ -1,8 +1,9 @@
+import { commentController } from "@/controller/comment.controller";
 import { homeController } from "@/controller/home.controller";
+import { postController } from "@/controller/post.controller";
 import { userController } from "@/controller/user.controller";
 import { WebApp } from "@/core/server";
 import type { Request, Response } from "express";
-import { postController } from "./controller/post.controller";
 
 const routes = (webApp: WebApp) => {
   webApp.get("/", (request: Request, response: Response): void => {
@@ -43,6 +44,10 @@ const routes = (webApp: WebApp) => {
 
   webApp.post("/posts/:id/delete", (request: Request, response: Response): void => {
     postController.delete(request, response);
+  });
+
+  webApp.post("/posts/:id/comments", (request: Request, response: Response): void => {
+    commentController.store(request, response);
   });
 };
 

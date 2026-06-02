@@ -60,6 +60,9 @@ const getPosts = async (
         author: {
           select: { id: true, name: true },
         },
+        _count: {
+          select: { comments: true },
+        },
       },
     }),
     prisma.post.count({
@@ -68,7 +71,9 @@ const getPosts = async (
   ]);
 
   return {
-    data,
+    data: data.map((post) => ({
+      ...post,
+    })),
     total,
     currentPage,
     pageSize,
@@ -87,6 +92,9 @@ const getPostById = async (id: string): Promise<ArticleDetails | null> => {
     include: {
       author: {
         select: { id: true, name: true, email: true },
+      },
+      comments: {
+        select: { id: true, content: true, createdAt: true },
       },
     },
   });

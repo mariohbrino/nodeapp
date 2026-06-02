@@ -7,4 +7,16 @@
   <div class="flex justify-end mt-4">
     <a href="/posts" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-500">Back to Posts</a>
   </div>
+  <form method="POST" action="/posts/{{post.id}}/comments" class="mt-4">
+    <textarea name="content" class="w-full p-2 rounded border border-gray-300" placeholder="Add a comment..."></textarea>
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 mt-2">Post Comment</button>
+  </form>
+  <div class="">
+    {{#each post.comments}}
+      <div class="bg-gray-700 p-4 rounded mt-2">
+        <p class="text-gray-300">{{this.content}}</p>
+        <p class="text-sm text-gray-500">Submitted on {{formatDate this.createdAt}}</p>
+      </div>
+    {{/each}}
+  </div>
 </div>
