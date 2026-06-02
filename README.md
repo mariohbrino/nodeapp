@@ -75,6 +75,15 @@ npm start
 > Open the application in the browser at [http://localhost:3000](http://localhost:3000).
 > Depends on the PORT configured in the `.env` file.
 
+# Cloud Database
+
+The application uses Prisma ORM to connect to a database engine, in this case the project is using
+PostgreSQL using a local container for development, and a cloud database for deployment was used with
+Neon for deployment with cloud database services. The database connection string is configured in the
+`.env` file with the `DATABASE_URL` variable.
+
+> [!IMPORTANT] use sslmode verify-full in the connection string for secure connection.
+
 # Useful Websites
 
 * [vscode](https://code.visualstudio.com/)
@@ -87,3 +96,4 @@ npm start
 * [prisma](https://www.prisma.io/)
 * [browsersync](https://www.browsersync.io/)
 * [vitest](https://vitest.dev/)
+* [neon](https://neon.com/)
