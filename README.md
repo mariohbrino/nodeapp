@@ -82,7 +82,8 @@ PostgreSQL using a local container for development, and a cloud database for dep
 Neon for deployment with cloud database services. The database connection string is configured in the
 `.env` file with the `DATABASE_URL` variable.
 
-> [!IMPORTANT] use sslmode verify-full in the connection string for secure connection.
+> [!IMPORTANT]
+> use sslmode verify-full in the connection string for secure connection.
 
 # Useful Websites
 
